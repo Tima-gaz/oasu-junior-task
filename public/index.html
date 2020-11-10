@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="css/normalize.css" />
+    <link rel="stylesheet" href="css/style.css" />
+    <title>ToDo List</title>
+</head>
+<body>
+    <main class="main">
+        <section class="tasks">
+            <div class="tasks__creator">
+              <input class="tasks__text" type="text" placeholder="Enter text...">
+              <div class="tasks__priority">
+                <select>
+                  <option value="High" label="High"></option>
+                  <option value="Medium" label="Medium"></option>
+                  <option value="Low" label="Low"></option>
+                </select>
+              </div>
+              <button class="tasks__add-button" type="button"></button>
+            </div>
+            <div class="tasks__order">
+              <div class="filter">
+               <input class="visually-hidden" type="checkbox" id="checkbox__completed"><label for="checkbox__completed">Completed</label>
+               <input class="visually-hidden" name="filter-radio" type="radio" id="checkbox__high"><label for="checkbox__high">High</label>
+               <input class="visually-hidden" name="filter-radio" type="radio" id="checkbox__medium"><label for="checkbox__medium">Medium</label>
+               <input class="visually-hidden" name="filter-radio" type="radio" id="checkbox__low"><label for="checkbox__low">Low</label>
+              </div>
+              <div class="sort">
+               <input class="visually-hidden sort__button" type="checkbox" id="sort__checkbox"><label for="sort__checkbox">Date</label>
+              </div>
+            </div>
+            <div class="tasks__container">
+              
+            </div>
+         </section>
+    </main>
+    <script src="bundle.js"></script>
+</body>
+</html>

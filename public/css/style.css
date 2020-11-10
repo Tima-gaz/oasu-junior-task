@@ -1,0 +1,376 @@
+@font-face {
+    font-family: "AmaticSC";
+    src: local("AmaticSC-Bold"),
+      url("../fonts/amatic-sc-v15-latin_cyrillic-700.woff2") format("woff"),
+      url("../fonts/amatic-sc-v15-latin_cyrillic-700.woff") format("woff");
+    font-weight: bold;
+    font-style: normal;
+  }
+
+  @font-face {
+    font-family: "Balsamiq Sans";
+    src: local("Balsamiq Sans"),
+      url("../fonts/BalsamiqSans-Regular.woff2") format("woff"),
+      url("../fonts/BalsamiqSans-Regular.woff") format("woff");
+    font-weight: normal;
+    font-style: normal;
+  }
+
+body {
+  font-family: "Balsamiq Sans", Arial, sans-serif;
+  color:black;
+  font-size: 25px;
+  background: #fff5ee url(../img/squared-background.jpg) repeat;
+  background-size: 20%;
+}
+
+.visually-hidden {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  margin: -1px;
+  border: 0;
+  padding: 0;
+  white-space: nowrap;
+  clip-path: inset(100%);
+  clip: rect(0 0 0 0);
+  overflow: hidden;
+}
+
+.tasks {
+  width: 700px;
+  padding: 10px;
+  margin: auto;
+  margin-top: 300px;
+}
+
+.tasks__creator {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.tasks input[type="text"] {
+  display: block;
+  width: 480px;
+  padding: 3px;
+  padding-left: 10px;
+  height: 30px;
+  border: black 4px solid;
+  color: black;
+  border-radius: 3px;
+}
+
+.tasks input[type="text"]::-webkit-input-placeholder {
+  color: grey;
+  font-size: 25px;
+}
+
+.tasks__add-button {
+  display: block;
+  position: relative;
+  margin-top: -10px;
+  width: 30px;
+  height: 8px;
+  background-color: black;
+  border: none; 
+  outline: none;
+  border-radius: 3px;
+}
+
+.tasks__add-button::after {
+  content: "";
+  position: absolute;
+  top: -10px;
+  left: 10px;
+  width: 10px;
+  height: 30px;
+  background-color: black;
+  border-radius: 3px;
+}
+
+.tasks__priority {
+  position: relative;
+}
+
+.tasks__priority select{
+  margin-top: -2px;
+  height: 44px;
+  border: black 3px solid;
+  border-radius: 3px;
+  padding-right: 7px;
+  padding-left: 3px;
+}
+
+.tasks__priority::after{
+  content: "";
+  position: absolute;
+  top: -2px;
+  right: 21px;
+  width: 3px;
+  height: 43px;
+  background-color: black;
+}
+
+.tasks__order {
+  width: 650px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.filter {
+  margin-top: 10px;
+  width: 500px;
+  display: flex;
+  align-items: center;
+  position: relative;
+  justify-content: space-between;
+}
+
+.fitter__wrap {
+  margin: 0;
+  padding: 0
+}
+
+.filter input{
+  position: relative;
+}
+
+.filter input + label{
+  margin: 10px;
+  margin-left: 20px;
+}
+
+.filter input:not(:checked) + label::before{
+  content: "";
+  position: absolute;
+  left: 0px;
+  top: 12px;
+  width: 24px;
+  height: 24px;
+  background-image: url(../img/checkbox-off.svg);
+  background-repeat: no-repeat;
+  background-position: 0 0;
+}
+
+.filter input:not(:checked) + label[for="checkbox__high"]::before{
+  left: 174px;
+}
+
+.filter input:not(:checked) + label[for="checkbox__medium"]::before{
+  left: 276px;
+}
+
+.filter input:not(:checked) + label[for="checkbox__low"]::before{
+  left: 416px;
+}
+
+.filter input:checked + label::after{
+  content: "";
+  position: absolute;
+  left: 0px;
+  top: 12px;
+  width: 24px;
+  height: 24px;
+  background-image: url(../img/checkbox-on.svg);
+  background-repeat: no-repeat;
+  background-position: 0 0;
+}
+
+.filter input:checked + label[for="checkbox__high"]::after{
+  left: 174px;
+}
+
+.filter input:checked + label[for="checkbox__medium"]::after{
+  left: 276px;
+}
+
+.filter input:checked + label[for="checkbox__low"]::after{
+  left: 416px;
+}
+
+.sort {
+  margin-top: 10px;
+  margin-left: 6px;
+}
+
+.sort__button {
+  border: none;
+  outline: none;
+  background-color: transparent;
+}
+
+label[for="sort__checkbox"] {
+  position: relative;
+}
+
+.sort__button:not(:checked) + label[for="sort__checkbox"]::before {
+  content: "";
+  position: absolute;
+  left: -46px;
+  top: -8px;
+  width: 48px;
+  height: 48px;
+  background-image: url(../img/arrow-down.svg);
+  background-repeat: no-repeat;
+  background-position: 0 0;
+}
+
+.sort__button:checked + label[for="sort__checkbox"]::after {
+  content: "";
+  position: absolute;
+  left: -34px;
+  top: 8px;
+  width: 24px;
+  height: 24px;
+  background-image: url(../img/arrow-up.svg);
+  background-repeat: no-repeat;
+  background-position: 0 0;
+}
+
+.task__delete-button {
+  border: none;
+  outline: none;
+  background-color: transparent;
+  position: relative;
+  margin-right: -122px;
+}
+
+.task {
+  width: 725px;
+  padding: 10px;
+  margin: auto;
+  margin-top: 20px;
+  margin-left: -85px;
+  margin-bottom: 20px;
+  display: flex;
+  justify-content: space-between;
+}
+
+.task__container {
+  width: 625px;
+  min-height: 100px;
+  padding: 10px;
+  margin-left: -100px;
+  display: flex;
+  justify-content: space-between;
+  border: 3px black solid;
+  background-color: white;
+}
+
+.task__delete-button::after {
+  content: "";
+  position: absolute;
+  left: -90px;
+  top: 8px;
+  width: 32px;
+  height: 32px;
+  background-image: url(../img/trash-bin.svg);
+  background-repeat: no-repeat;
+  background-position: 0 0;
+}
+
+.task__description {
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.task__wrapper {
+  margin: 0;
+  display: flex;
+  justify-content: space-between;
+}
+
+.task__dates {
+  width: 625px;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  justify-content: space-between;
+}
+
+.task__result{
+  margin: 0;
+}
+
+.task__text {
+  margin: 0;
+  margin-bottom: 15px;
+  width: 590px;
+  border: none;
+  padding-top: 0;
+  padding-bottom: 0;
+}
+
+.task__text textarea{
+  margin: 0;
+  width: 100%;
+  max-width: 590px;
+  border: none;
+  padding-top: 0;
+  padding-bottom: 0;
+  overflow: auto;
+  outline: none;
+  resize: none;
+  background-color: white;
+  color: black;
+}
+
+.hiddendiv {
+  display: none;
+  white-space: pre-wrap;
+  word-wrap: break-word;
+}
+
+.task__date {
+  margin-bottom: 0;
+}
+
+.task__buttons {
+  width: 20px;
+  margin-right: 10px;
+  margin-left: 10px;
+}
+
+.task__done-button, .task__cancelled-button {
+  border: none;
+  outline: none;
+  background-color: transparent;
+  position: relative;
+}
+
+.task__done-button::before, .task__cancelled-button::before {
+  content: "";
+  position: absolute;
+  left: -6px;
+  top: 38px;
+  width: 35px;
+  height: 35px;
+  background-image: url(../img/tick.svg);
+  background-repeat: no-repeat;
+  background-position: 0 0;
+}
+
+.task__cancelled-button::before {
+  top: -48px;
+  left: -4px;
+  background-image: url(../img/cross.svg);
+}
+
+.task__priority--wrap{
+  margin-left: -24px;
+}
+
+.task__priority{
+  color: red;
+  margin-top: 5px;
+  width: 92px;
+  text-align: right;
+}
+
+.hide{
+  display: none;
+}
