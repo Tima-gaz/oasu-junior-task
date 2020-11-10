@@ -18,11 +18,15 @@ let messages =[];
 
 let isTasksSortedUp = true;
 
-let getTasks = (data) => {
-  taskList = data;
+let getTasks = (tasks) => {
+   for (let task of tasks) {
+    taskList.push(task);
+    messages.push(createTask(task))
+    displayMessages(messages);
+   }
 }
 
-getData(getTasks)
+getData(getTasks);
 
 let displayMessages = (messages) => {
     let displayMessage =  ``;
@@ -91,11 +95,11 @@ let createTask = (item, finishDate = null) => {
   return message
 }
 
-addButton.addEventListener('click' , function() {
+let onClickRenderTask = () => {
   if (!input.value) return;
 
   let newTask = {
-    id: generateId(),
+    id: taskList.length + 1,
     task: input.value,
     creationDate: generateDate(),
     finishDate: generateDate(),
@@ -105,12 +109,15 @@ addButton.addEventListener('click' , function() {
     priority: prioritySelect.value
   }
   
+
   taskList.push(newTask);
   messages.push(createTask(newTask))
   displayMessages(messages);
-  input.value = ``;
   postData(newTask, newTask.id)
-});
+  input.value = ``;
+}
+
+addButton.addEventListener('click' , onClickRenderTask);
 
 taskContainer.addEventListener('click', function(evt) {
     if(evt.target.tagName === 'TEXTAREA') {
@@ -123,6 +130,7 @@ taskContainer.addEventListener('click', function(evt) {
             item.task = textarea.value;
             messages[i] = createTask(taskList[i]);
             displayMessages(messages);
+            putData(item, item.id);
           })
         }
       })
@@ -138,6 +146,7 @@ taskContainer.addEventListener('click', function(evt) {
             if(button.className === 'task__done-button') {item.isDone = true}
             messages[i] = createTask(taskList[i], generateDate());
             displayMessages(messages);
+            putData(item, item.id);
           }
         })
     }
@@ -148,7 +157,8 @@ taskContainer.addEventListener('click', function(evt) {
           let container = deleteButton.parentNode
           if(item.id == container.id) {
             taskList.splice(i, 1);
-            messages.splice(i, 1)
+            messages.splice(i, 1);
+            deleteData(item.id);
           }
           displayMessages(messages);
         })

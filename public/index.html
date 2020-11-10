@@ -24,9 +24,9 @@
             <div class="tasks__order">
               <div class="filter">
                <input class="visually-hidden" type="checkbox" id="checkbox__completed"><label for="checkbox__completed">Completed</label>
-               <input class="visually-hidden" name="filter-radio" type="radio" id="checkbox__high"><label for="checkbox__high">High</label>
-               <input class="visually-hidden" name="filter-radio" type="radio" id="checkbox__medium"><label for="checkbox__medium">Medium</label>
-               <input class="visually-hidden" name="filter-radio" type="radio" id="checkbox__low"><label for="checkbox__low">Low</label>
+               <input class="visually-hidden" name="filter-radio" type="checkbox" id="checkbox__high"><label for="checkbox__high">High</label>
+               <input class="visually-hidden" name="filter-radio" type="checkbox" id="checkbox__medium"><label for="checkbox__medium">Medium</label>
+               <input class="visually-hidden" name="filter-radio" type="checkbox" id="checkbox__low"><label for="checkbox__low">Low</label>
               </div>
               <div class="sort">
                <input class="visually-hidden sort__button" type="checkbox" id="sort__checkbox"><label for="sort__checkbox">Date</label>
@@ -38,5 +38,8 @@
          </section>
     </main>
     <script src="bundle.js"></script>
+<style type="text/css">#hellopreloader>p{display:none;}#hellopreloader_preload{display: block;position: fixed;z-index: 99999;top: 0;left: 0;width: 100%;height: 100%;min-width: 1000px;background: #FFECDB url(http://hello-site.ru//main/images/preloads/oval.svg) center center no-repeat;background-size:114px;}</style>
+<div id="hellopreloader"><div id="hellopreloader_preload"></div><p><a href="http://hello-site.ru">Hello-Site.ru. Бесплатный конструктор сайтов.</a></p></div>
+<script type="text/javascript">var hellopreloader = document.getElementById("hellopreloader_preload");function fadeOutnojquery(el){el.style.opacity = 1;var interhellopreloader = setInterval(function(){el.style.opacity = el.style.opacity - 0.05;if (el.style.opacity <=0.05){ clearInterval(interhellopreloader);hellopreloader.style.display = "none";}},16);}window.onload = function(){setTimeout(function(){fadeOutnojquery(hellopreloader);},2000);};</script>
 </body>
 </html>

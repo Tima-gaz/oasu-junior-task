@@ -6,7 +6,7 @@ export const getData = (successHandler) => {
     xhr.onload = function () {
         let task = JSON.parse(xhr.responseText);
         if (xhr.readyState == 4 && xhr.status == "200") {
-            successHandler(task)
+            successHandler(task);
         } else {
             console.error(task);
         }
@@ -14,7 +14,7 @@ export const getData = (successHandler) => {
     xhr.send(null);
 }
 
-export const postData = (data, id) => {
+export const postData = (data) => {
     let json = JSON.stringify(data);
 
     let xhr = new XMLHttpRequest();
@@ -22,10 +22,10 @@ export const postData = (data, id) => {
     xhr.setRequestHeader('Content-type','application/json; charset=utf-8');
     xhr.onload = function () {
         let task = JSON.parse(xhr.responseText);
-        if (xhr.readyState == 4 && xhr.status == "201") {
+        if (xhr.readyState == 4) {
             console.table(task);
         } else {
-            console.error(task);
+            console.error('failed to load:',task);
         }
     }
     xhr.send(json);
@@ -35,11 +35,11 @@ export const putData = (data, id) => {
     let json = JSON.stringify(data);
 
     let xhr = new XMLHttpRequest();
-    xhr.open("POST", URL+ `/:${id}`, true);
+    xhr.open("PUT", URL+ `/:${id}`, true);
     xhr.setRequestHeader('Content-type','application/json; charset=utf-8');
     xhr.onload = function () {
         let task = JSON.parse(xhr.responseText);
-        if (xhr.readyState == 4 && xhr.status == "201") {
+        if (xhr.readyState == 4) {
             console.table(task);
         } else {
             console.error(task);
@@ -53,7 +53,7 @@ export const deleteData = (id) => {
     xhr.open("DELETE", URL+ `/:${id}`, true);
     xhr.onload = function () {
         let task = JSON.parse(xhr.responseText);
-        if (xhr.readyState == 4 && xhr.status == "200") {
+        if (xhr.readyState == 4) {
             console.table(task);
         } else {
             console.error(task);
