@@ -35,7 +35,7 @@ export const putData = (data, id) => {
     let json = JSON.stringify(data);
 
     let xhr = new XMLHttpRequest();
-    xhr.open("PUT", URL+ `/:${id}`, true);
+    xhr.open("PUT", URL+ `/${id}`, true);
     xhr.setRequestHeader('Content-type','application/json; charset=utf-8');
     xhr.onload = function () {
         let task = JSON.parse(xhr.responseText);
@@ -50,7 +50,7 @@ export const putData = (data, id) => {
 
 export const deleteData = (id) => {
     let xhr = new XMLHttpRequest();
-    xhr.open("DELETE", URL+ `/:${id}`, true);
+    xhr.open("DELETE", URL+ `/${id}`, true);
     xhr.onload = function () {
         let task = JSON.parse(xhr.responseText);
         if (xhr.readyState == 4) {

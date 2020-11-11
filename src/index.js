@@ -20,10 +20,20 @@ let isTasksSortedUp = true;
 
 let getTasks = (tasks) => {
    for (let task of tasks) {
+    task.creationDate = new Date(task.creationDate);
     taskList.push(task);
-    messages.push(createTask(task))
+    messages.push(createTask(task, new Date(task.finishDate)))
     displayMessages(messages);
    }
+}
+
+let updateTaskId = (tasks) => {
+  messages = []
+  tasks.forEach(function(item, i) {
+    taskList[i] = item;
+    taskList[i].creationDate = new Date(taskList[i].creationDate);
+    messages.push(createTask(taskList[i], new Date(taskList[i].finishDate)))
+  })
 }
 
 getData(getTasks);
@@ -99,7 +109,7 @@ let onClickRenderTask = () => {
   if (!input.value) return;
 
   let newTask = {
-    id: taskList.length + 1,
+    id: generateId(),
     task: input.value,
     creationDate: generateDate(),
     finishDate: generateDate(),
@@ -115,6 +125,7 @@ let onClickRenderTask = () => {
   displayMessages(messages);
   postData(newTask, newTask.id)
   input.value = ``;
+  getData(updateTaskId)
 }
 
 addButton.addEventListener('click' , onClickRenderTask);
@@ -175,7 +186,7 @@ sortFlag.addEventListener('click', function() {
   }
   
   for(let task of taskList) {
-    orderedMessages.push(createTask(task))
+    orderedMessages.push(createTask(task, new Date(task.finishDate)))
   }
   messages = orderedMessages;
   displayMessages(messages);

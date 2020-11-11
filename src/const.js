@@ -18,12 +18,13 @@ export const generateTime = (date) => {
     let yy = currentDate.getFullYear();
     
     let hours = currentDate.getHours();
-    if (hours === 0) hours = '00'
     if (hours < 10) hours = '0' + hours
+    if (hours == 0) hours = '00'
 
     let minutes = currentDate.getMinutes();
-    if (minutes === 0) minutes = '00'
+    
     if (minutes < 10) minutes = '0' + minutes
+    if (minutes == 0) minutes = '00'
 
     return dd + '/' + mm + '/' + yy + ' ' + hours + ':' + minutes;
   };
