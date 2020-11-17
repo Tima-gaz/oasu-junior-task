@@ -14,7 +14,7 @@ const mediumToggle = document.getElementById('checkbox__medium');
 const lowToggle = document.getElementById('checkbox__low');
 
 let taskList = [];
-let messages =[];
+let messages = [];
 
 let isTasksSortedUp = true;
 
@@ -51,10 +51,11 @@ let displayMessages = (messages) => {
 }
 
 let createTask = (item, finishDate = null) => {
-    const {task, creationDate, priority, id, isDone, isCancelled, isActive} = item;
+    const {task, creationDate, priority, id = null, isDone, isCancelled, isActive} = item;
     const creationTime = generateTime(creationDate);
     const finishTime = generateTime(finishDate);
     const isTextareaDisabled = true;
+    
 
     const textareaDisabled = isTextareaDisabled
     ? `disabled`
@@ -105,11 +106,30 @@ let createTask = (item, finishDate = null) => {
   return message
 }
 
+let filterButtonsDisabler = () => {
+  if(highToggle.checked === true) {
+    highToggle.removeAttribute('checked');
+    highToggle.checked = false
+  }
+  if(mediumToggle.checked === true) {
+    mediumToggle.removeAttribute('checked');
+    mediumToggle.checked = false
+  }
+  if(lowToggle.checked === true) {
+    lowToggle.removeAttribute('checked');
+    lowToggle.checked = false
+  }
+  if(completedToggle.checked === true) {
+    completedToggle.removeAttribute('checked');
+    completedToggle.checked = false;
+  }
+}
+
+
 let onClickRenderTask = () => {
   if (!input.value) return;
 
   let newTask = {
-    id: generateId(),
     task: input.value,
     creationDate: generateDate(),
     finishDate: generateDate(),
@@ -123,9 +143,9 @@ let onClickRenderTask = () => {
   taskList.push(newTask);
   messages.push(createTask(newTask))
   displayMessages(messages);
-  postData(newTask, newTask.id)
-  input.value = ``;
+  postData(newTask);
   getData(updateTaskId)
+  input.value = ``;
 }
 
 addButton.addEventListener('click' , onClickRenderTask);
@@ -191,12 +211,12 @@ sortFlag.addEventListener('click', function() {
   messages = orderedMessages;
   displayMessages(messages);
   isTasksSortedUp = !isTasksSortedUp;
+  filterButtonsDisabler()
 });
 
 filter.addEventListener('change', function(evt) {
   let total = [];
   let sortedMessages = [];
-//   let toggle = evt.target;
 
   function unique(arr) {
     let result = [];
@@ -209,8 +229,6 @@ filter.addEventListener('change', function(evt) {
   
     return result;
   }
-
-//   if(toggle.hasAttribute('checked')) {evt.target.checked = false}
 
   if(completedToggle.checked) {
     if(highToggle.checked) {

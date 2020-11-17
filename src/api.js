@@ -14,7 +14,7 @@ export const getData = (successHandler) => {
     xhr.send(null);
 }
 
-export const postData = (data) => {
+export const postData = (data, successHandler) => {
     let json = JSON.stringify(data);
 
     let xhr = new XMLHttpRequest();
